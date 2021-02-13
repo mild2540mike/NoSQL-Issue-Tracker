@@ -7,6 +7,8 @@
     <link rel="mi icon" href="./favicon.ico" type="image/x-icon">
     <title>Issue Tracker</title>
     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Crimson+Pro">
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -14,6 +16,11 @@
       crossorigin="anonymous"
     />
   </head>
+  <style>
+    body {
+      font-family: Cursive;
+    }
+    </style>
   <body onload="fetchIssues()">
     <div class="container">
       <div class="alert alert-warning alert-dismissible" role="alert">
@@ -74,6 +81,7 @@
             />
           </div>
           <button type="submit" class="btn btn-primary">Add</button>
+          <button type="reset" class="btn btn-danger">Reset</button>
         </form>
       </div>
       <div class="col-lg-12">
@@ -99,5 +107,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="main.js"></script>
+    <!-- Sweet Alart -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   </body>
 </html>
