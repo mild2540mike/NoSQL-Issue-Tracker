@@ -1,5 +1,17 @@
 document.getElementById('issueInputForm').addEventListener('submit', saveIssue);
 
+function loadingClick () {
+
+  // $('.loading').on('click',function(){
+  //   var $btn = $(this);
+  //     $btn.button('loading');
+  //     setTimeout(function(){
+  //        $btn.button('reset');
+  //   },2000);
+  // });
+
+}
+
 function saveIssue(e) {
   var issueDesc = document.getElementById('issueDescInput').value;
   var issueSeverity = document.getElementById('issueSeverityInput').value;
@@ -25,8 +37,12 @@ function saveIssue(e) {
     'Good job!',
     'You clicked the button!',
     'success'
-  )
-  // console.log(issue)
+  ).then( () => {
+    document.getElementById('issueDescInput').value = '';
+    document.getElementById('issueAssignedToInput').value = '';
+    
+  })
+  console.log(issue)
 
   if (localStorage.getItem('issues') == null) {
     var issues = [];
@@ -36,6 +52,7 @@ function saveIssue(e) {
     var issues = JSON.parse(localStorage.getItem('issues'));
     issues.push(issue);
     localStorage.setItem('issues', JSON.stringify(issues));
+
   }
 
   fetchIssues();
@@ -104,28 +121,10 @@ function deleteIssue(id) {
   })
 }
 
-// function OKSwal() {
-//   if(doc) {
-//     Swal.fire({
-//       title: 'Custom width, padding, background.',
-//       width: 600,
-//       padding: '3em',
-//       background: '#fff url(/images/trees.png)',
-//       backdrop: `
-//         rgba(0,0,123,0.4)
-//         url("./Image/tenor-cat.gif")
-//         left top
-//         no-repeat
-//       `
-//     })
-//   }
-//   }
-
-
 function fetchIssues() {
   var issues = JSON.parse(localStorage.getItem('issues'));
 
-  ((issues == '')? issuesList.innerHTML = '<h4 style="margin: 12em 5em 30% 45%; color: gray;">No data.</h4>' : issuesList.innerHTML = '')
+  ((issues == '')? issuesList.innerHTML = '<span class="blink_me" style="margin: 12em 5em 30% 45%; color: gray; font-size: 2.5vmin;">No data.</span>' : issuesList.innerHTML = '')
  
 
   
@@ -147,7 +146,7 @@ function fetchIssues() {
     issuesList.innerHTML +=   '<div class="well">'+
                               '<h6>Issue ID: ' + id + '</h6>'+
                               // '<p><span class="label label-info">' + status + '</span></p>'+
-                              ((status == 'Open')? '<p><span class="label label-info">' + status + '</span></p>': '<p><span class="label label-default">' + status + '</span></p>') +
+                              ((status == 'Open')? '<p><span class="label label-info blink_me">' + status + '</span></p>': '<p><span class="label label-default">' + status + '</span></p>') +
                               '<h3>' + desc + '</h3>'+
                               '<p><span class="glyphicon glyphicon-time"></span> ' + severity + '  ,' + CreateDate + '</p>'+
                               '<p><span class="glyphicon glyphicon-user"></span> ' + assignedTo + '</p>'+
@@ -157,3 +156,12 @@ function fetchIssues() {
                               '</div>';
   }
 }
+
+// Jquery loading
+$(function() {
+  $(".preload").fadeOut(2000, function() {
+      $(".container").fadeIn(1000);        
+  });
+});
+
+

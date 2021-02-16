@@ -16,12 +16,14 @@
       crossorigin="anonymous"
     />
   </head>
-  <style>
+  <link rel="stylesheet" href="style.css">
+  <!-- <style>
     body {
       font-family: Cursive;
     }
-    </style>
+    </style> -->
   <body onload="fetchIssues()">
+    <span class="preload"><img src="./image/Loading_1.gif"></span>
     <div class="container">
       <div class="alert alert-warning alert-dismissible" role="alert">
         <button
@@ -80,7 +82,7 @@
               required
             />
           </div>
-          <button type="submit" class="btn btn-primary">Add</button>
+          <button type="submit" class="btn btn-primary loading buttonload" id="load" onfocus="loadingClick()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Loading...">Add</button>
           <button type="reset" class="btn btn-danger">Reset</button>
         </form>
       </div>
@@ -109,5 +111,7 @@
     <script src="main.js"></script>
     <!-- Sweet Alart -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- loading -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </body>
 </html>
